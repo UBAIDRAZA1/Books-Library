@@ -1,0 +1,91 @@
+# =====================================
+# URDU SHARAH WEBSITE - RUN KARNE KA TARIQA
+# =====================================
+
+## Step 1: CMD Open Karein
+1. `urdu-sharah-new` folder mein jayein
+2. Address bar mein `cmd` likhein aur Enter press karein
+   YA
+   Folder mein right-click karke "Open in Terminal" select karein
+
+## Step 2: Dependencies Install Karein
+CMD mein ye command likhein:
+```
+npm install
+```
+Wait karein jab tak installation complete na ho (2-3 minutes lagenge)
+
+## Step 3: Development Server Run Karein
+```
+npm run dev
+```
+
+## Step 4: Browser Mein Open Karein
+Browser mein ye URL open karein:
+```
+http://localhost:3000
+```
+
+## ✅ Website Ready Hai!
+
+## Additional Commands:
+
+### Production Build:
+```
+npm run build
+npm start
+```
+
+### Server Stop Karne Ke Liye:
+CMD mein `Ctrl + C` press karein
+
+---
+
+## Agar Error Aaye:
+
+### "npm is not recognized" error:
+1. Node.js dobara install karein: https://nodejs.org/
+2. System restart karein
+3. Phir try karein
+
+### Port 3000 already in use:
+```
+npm run dev -- -p 3001
+```
+Phir http://localhost:3001 open karein
+
+---
+
+## Website Structure:
+
+📚 **Homepage**: http://localhost:3000
+📖 **Books Section**: http://localhost:3000/#books  
+📝 **Sharah Section**: http://localhost:3000/#sharah
+🎓 **Papers Section**: http://localhost:3000/#papers
+📄 **Year 1 Page**: http://localhost:3000/year/1
+📄 **Year 2 Page**: http://localhost:3000/year/2
+... (same for years 3-8)
+🔍 **Search Page**: http://localhost:3000/search
+
+---
+
+## Features:
+
+✅ Modern, responsive design
+✅ 8 years of books data
+✅ Books, Sharahs, Papers categories
+✅ Google Drive integration
+✅ Beautiful animations
+✅ Fast loading
+✅ SEO optimized
+
+## Next Steps:
+
+1. Website run karke test karein
+2. Years 5-8 ke actual Google Drive links add karein (src/lib/data.ts file mein)
+3. Production build banayein
+4. Vercel/Netlify par deploy karein
+
+---
+
+**Created with ❤️ for Kanzul Madaris Students**
