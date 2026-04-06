@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
   verification: {
-    google: "<meta name=\"google-site-verification\" content=\"wUL1G1jPSRXJ-lTg0fz-AxNFqFCZxnF9D7VPWyU1gMY\" />",
+    google: "wUL1G1jPSRXJ-lTg0fz-AxNFqFCZxnF9D7VPWyU1gMY",
   },
   alternates: {
     canonical: "https://books-library-ashy.vercel.app",
