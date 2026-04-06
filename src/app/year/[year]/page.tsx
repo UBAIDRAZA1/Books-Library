@@ -4,6 +4,7 @@ import BookCard from '@/components/BookCard';
 import { allData } from '@/lib/data';
 import { BookOpen, ArrowLeft, FileText, GraduationCap, Sparkles } from 'lucide-react';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
 interface YearPageProps {
   params: {
@@ -15,6 +16,36 @@ export function generateStaticParams() {
   return allData.map((data) => ({
     year: data.year.toString(),
   }));
+}
+
+export function generateMetadata({ params }: YearPageProps): Metadata {
+  const yearNum = parseInt(params.year);
+  const yearData = allData.find((d) => d.year === yearNum);
+
+  if (!yearData) {
+    return {
+      title: 'Year Not Found - Urdu Sharah',
+      description: 'The requested year could not be found.',
+    };
+  }
+
+  return {
+    title: `${yearData.name} - Urdu Sharah Books & Papers`,
+    description: `Complete collection of ${yearData.books.length} books, ${yearData.sharahs.length} sharahs, and ${yearData.papers?.length || 0} past papers for ${yearData.name} (${yearData.urduName}) of Dars-e-Nizami curriculum.`,
+    keywords: [
+      `Darja ${yearData.year}`,
+      `Dars-e-Nizami Year ${yearData.year}`,
+      `Kanzul Madaris Year ${yearData.year}`,
+      yearData.urduName,
+      'Urdu Sharah Books',
+      'Islamic Studies',
+    ],
+    openGraph: {
+      title: `${yearData.name} - Urdu Sharah Library`,
+      description: `Access ${yearData.books.length + yearData.sharahs.length + (yearData.papers?.length || 0)} resources for ${yearData.name}`,
+      type: 'website',
+    },
+  };
 }
 
 export default function YearPage({ params }: YearPageProps) {

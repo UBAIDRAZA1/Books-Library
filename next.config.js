@@ -8,6 +8,12 @@ const nextConfig = {
       },
     ],
   },
+  // SEO Optimization
+  reactStrictMode: true,
+  // Add site URL
+  env: {
+    SITE_URL: 'https://books-library-ashy.vercel.app',
+  },
 }
 
 module.exports = nextConfig

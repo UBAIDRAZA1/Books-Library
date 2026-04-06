@@ -1,0 +1,19 @@
+{
+  "name": "Urdu Sharah - Kanzul Madaris Digital Library",
+  "short_name": "Urdu Sharah",
+  "description": "Pakistan's largest online Urdu Sharah library for Dars-e-Nizami students",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#11097e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["education", "books"],
+  "lang": "ur-PK"
+}
