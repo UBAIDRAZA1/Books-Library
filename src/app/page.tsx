@@ -4,6 +4,7 @@ import BooksSection from '@/components/BooksSection';
 import PapersSection from '@/components/PapersSection';
 import AboutSection from '@/components/AboutSection';
 import Footer from '@/components/Footer';
+import AdBanner from '@/components/AdBanner';
 
 export const metadata = {
   title: 'Home - Urdu Sharah Digital Library | Dars-e-Nizami Books',
@@ -15,9 +16,36 @@ export default function Home() {
     <main className="min-h-screen bg-mesh">
       <Navbar />
       <Hero />
+
+      {/* Ad After Hero Section */}
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <AdBanner
+          adSlot="1179702999"
+          className="text-center"
+        />
+      </div>
+
       <BooksSection />
+
+      {/* Ad Between Books and Papers */}
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <AdBanner
+          adSlot="5857314607"
+          className="text-center"
+        />
+      </div>
+
       <PapersSection />
       <AboutSection />
+
+      {/* Ad Before Footer */}
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <AdBanner
+          adSlot="6895064108"
+          className="text-center"
+        />
+      </div>
+
       <Footer />
     </main>
   );
