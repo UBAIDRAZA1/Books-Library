@@ -1,1 +1,9 @@
-// Disabled - using public/robots.txt instead
+export default function robots() {
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+    },
+    sitemap: 'https://books-library-ashy.vercel.app/sitemap.xml',
+  }
+}
