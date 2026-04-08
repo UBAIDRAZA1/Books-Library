@@ -10,8 +10,25 @@ export const metadata: Metadata = {
   },
 };
 
+interface Subsection {
+  subtitle: string;
+  content: string;
+  list?: string[];
+}
+
+interface Section {
+  id: string;
+  title: string;
+  content?: string;
+  highlight?: string;
+  list?: string[];
+  subsections?: Subsection[];
+  email?: string;
+  website?: string;
+}
+
 export default function TermsAndConditions() {
-  const sections = [
+  const sections: Section[] = [
     {
       id: "acceptance",
       title: "1. Acceptance of Terms",

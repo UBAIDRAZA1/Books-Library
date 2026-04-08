@@ -10,8 +10,18 @@ export const metadata: Metadata = {
   },
 };
 
+interface Section {
+  id: string;
+  title: string;
+  content?: string;
+  list?: string[];
+  note?: string;
+  email?: string;
+  website?: string;
+}
+
 export default function Disclaimer() {
-  const sections = [
+  const sections: Section[] = [
     {
       id: "general",
       title: "1. General Disclaimer",

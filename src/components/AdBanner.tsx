@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface AdBannerProps {
   adSlot: string;
@@ -17,11 +17,12 @@ export default function AdBanner({
 }: AdBannerProps) {
 
   const [isLoaded, setIsLoaded] = useState(false);
-  const adClient = 'ca-pub-1934057767866276'; // Your AdSense Publisher ID (ca- prefix is automatic)
+  const adPushed = useRef(false);
+  const adClient = 'ca-pub-1934057767866276';
 
   useEffect(() => {
     try {
-      if (typeof window !== 'undefined') {
+      if (typeof window !== 'undefined' && !adPushed.current) {
         // Load AdSense script if not already loaded
         if (!(window as any).adsbygoogle) {
           const script = document.createElement('script');
@@ -31,17 +32,28 @@ export default function AdBanner({
           document.head.appendChild(script);
         }
 
-        // Push ad after script loads
+        // Push ad only once
         setTimeout(() => {
           (window as any).adsbygoogle = (window as any).adsbygoogle || [];
           (window as any).adsbygoogle.push({});
+          adPushed.current = true;
           setIsLoaded(true);
         }, 100);
       }
     } catch (error) {
       console.error('AdSense error:', error);
     }
-  }, [adSlot, adClient]);
+  }, [adClient]);
+
+  if (!isLoaded) {
+    return (
+      <div className={`ad-container ${className}`}>
+        <div className="w-full h-24 bg-gray-100 rounded-lg animate-pulse flex items-center justify-center">
+          <span className="text-gray-400 text-sm">Loading ad...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`ad-container ${className}`}>

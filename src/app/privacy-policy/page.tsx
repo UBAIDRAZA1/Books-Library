@@ -10,8 +10,28 @@ export const metadata: Metadata = {
   },
 };
 
+interface Subsection {
+  subtitle: string;
+  content: string;
+  list?: string[];
+  highlight?: string;
+  highlightUrl?: string;
+}
+
+interface Section {
+  id: string;
+  title: string;
+  content?: string;
+  highlight?: string;
+  list?: string[];
+  subsections?: Subsection[];
+  note?: string;
+  email?: string;
+  website?: string;
+}
+
 export default function PrivacyPolicy() {
-  const sections = [
+  const sections: Section[] = [
     {
       id: "introduction",
       title: "1. Introduction",
@@ -144,7 +164,7 @@ export default function PrivacyPolicy() {
                   <p className="text-gray-300 leading-relaxed ml-13">
                     {section.content}
                     {section.highlight && (
-                      <a href={section.highlightUrl || section.highlight} className="text-gold-400 hover:underline ml-1" target="_blank" rel="noopener noreferrer">
+                      <a href={section.highlight} className="text-gold-400 hover:underline ml-1" target="_blank" rel="noopener noreferrer">
                         {section.highlight}
                       </a>
                     )}
@@ -165,7 +185,7 @@ export default function PrivacyPolicy() {
                         ))}
                       </ul>
                     )}
-                    {sub.highlight && (
+                    {sub.highlight && sub.highlightUrl && (
                       <p className="text-gray-300">
                         You may opt out of personalized advertising by visiting{' '}
                         <a href={sub.highlightUrl} className="text-gold-400 hover:underline" target="_blank" rel="noopener noreferrer">
@@ -201,11 +221,13 @@ export default function PrivacyPolicy() {
                     <p className="text-gray-300 mb-3"><span className="text-white font-semibold">Email:</span>{' '}
                       <a href={`mailto:${section.email}`} className="text-gold-400 hover:underline">{section.email}</a>
                     </p>
-                    <p className="text-gray-300"><span className="text-white font-semibold">Website:</span>{' '}
-                      <a href={section.website} className="text-gold-400 hover:underline" target="_blank" rel="noopener noreferrer">
-                        {section.website}
-                      </a>
-                    </p>
+                    {section.website && (
+                      <p className="text-gray-300"><span className="text-white font-semibold">Website:</span>{' '}
+                        <a href={section.website} className="text-gold-400 hover:underline" target="_blank" rel="noopener noreferrer">
+                          {section.website}
+                        </a>
+                      </p>
+                    )}
                   </div>
                 )}
 

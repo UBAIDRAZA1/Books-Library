@@ -11,8 +11,24 @@ export const metadata: Metadata = {
   },
 };
 
+interface ContactCard {
+  icon: any;
+  title: string;
+  value: string;
+  href: string;
+  color: string;
+  bgColor: string;
+  borderColor: string;
+}
+
+interface Reason {
+  icon: any;
+  text: string;
+  desc: string;
+}
+
 export default function ContactUs() {
-  const contactCards = [
+  const contactCards: ContactCard[] = [
     {
       icon: Mail,
       title: "Email",
@@ -33,7 +49,7 @@ export default function ContactUs() {
     },
   ];
 
-  const reasons = [
+  const reasons: Reason[] = [
     { icon: BookOpen, text: "Content Questions", desc: "Questions about books, sharahs, or educational materials" },
     { icon: Code, text: "Technical Support", desc: "Issues with website functionality or accessibility" },
     { icon: AlertCircle, text: "Copyright Concerns", desc: "Copyright infringement claims or permissions" },
