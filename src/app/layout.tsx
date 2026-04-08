@@ -119,14 +119,12 @@ export default function RootLayout({
           </>
         )}
 
-        {/* Google AdSense */}
-        {process.env.NEXT_PUBLIC_ADSENSE_ID && (
-          <script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_ID}`}
-            crossOrigin="anonymous"
-          />
-        )}
+        {/* Google AdSense - Temporarily hardcoded for verification */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1934057767866276"
+          crossOrigin="anonymous"
+        />
         {/* Structured Data - JSON-LD */}
         <script
           type="application/ld+json"
