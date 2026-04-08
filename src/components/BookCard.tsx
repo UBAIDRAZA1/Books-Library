@@ -121,46 +121,55 @@ export default function BookCard({ book }: BookCardProps) {
               backgroundSize: '200% 200%'
             }} />
 
-            {/* Category Badge */}
-            <div className={`
-              absolute top-3 right-3 
-              bg-gradient-to-r ${config.gradient}
-              text-white px-3 py-1.5 rounded-full
-              text-xs font-bold shadow-lg
-              flex items-center gap-1.5
-              backdrop-blur-sm
-              transform transition-all duration-300
-              ${isHovered ? 'scale-110' : 'scale-100'}
-            `}>
-              {getCategoryIcon(book.category)}
-              <span className="capitalize hidden sm:inline">{book.category}</span>
-              {book.category === 'book' && <Star className="w-3 h-3" />}
-              {book.category === 'paper' && <Zap className="w-3 h-3" />}
-            </div>
+            {/* Top Badges Container */}
+            <div className="absolute top-3 left-3 right-3 z-20 flex items-start justify-between gap-2">
+              {/* Year Badge */}
+              <div className={`
+                bg-white/95 backdrop-blur-md
+                text-primary-700 px-2.5 py-1.5 rounded-full
+                text-xs font-bold shadow-lg
+                flex items-center gap-1.5
+                transform transition-all duration-300
+                ${isHovered ? 'scale-110' : 'scale-100'}
+                whitespace-nowrap
+              `}>
+                <span className={`w-2 h-2 bg-gradient-to-r ${config.gradient} rounded-full animate-pulse flex-shrink-0`} />
+                <span>Year {book.year}</span>
+              </div>
 
-            {/* Year Badge */}
-            <div className={`
-              absolute top-3 left-3 
-              bg-white/95 backdrop-blur-md
-              text-primary-700 px-3 py-1.5 rounded-full
-              text-xs font-bold shadow-lg
-              flex items-center gap-1.5
-              transform transition-all duration-300
-              ${isHovered ? 'scale-110' : 'scale-100'}
-            `}>
-              <span className={`w-2 h-2 bg-gradient-to-r ${config.gradient} rounded-full animate-pulse`} />
-              Year {book.year}
+              {/* Online Read Button */}
+              <a
+                href={book.driveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`
+                bg-gradient-to-r ${config.gradient}
+                text-white px-2.5 py-1.5 rounded-full
+                text-xs font-bold shadow-lg
+                flex items-center gap-1.5
+                backdrop-blur-sm
+                transform transition-all duration-300
+                ${isHovered ? 'scale-110' : 'scale-100'}
+                hover:brightness-110 cursor-pointer
+                whitespace-nowrap
+              `}>
+                <BookOpen className="w-3 h-3 flex-shrink-0" />
+                <span className="hidden sm:inline">Online Read</span>
+                <span className="sm:hidden">Read</span>
+              </a>
             </div>
 
             {/* Quick View Button (appears on hover) */}
             <div className={`
               absolute inset-0 flex items-center justify-center
               transition-all duration-500
+              pointer-events-none
               ${isHovered ? 'opacity-100' : 'opacity-0'}
             `}>
               <div className={`
                 bg-white/95 backdrop-blur-md rounded-full p-4 shadow-2xl
                 transform transition-all duration-500
+                pointer-events-auto
                 ${isHovered ? 'scale-100 translate-y-0' : 'scale-75 translate-y-4'}
               `}>
                 <BookOpen className={`w-8 h-8 ${config.text}`} />
@@ -213,24 +222,24 @@ export default function BookCard({ book }: BookCardProps) {
               rel="noopener noreferrer"
               className={`
                 relative overflow-hidden
-                flex items-center justify-center gap-2
+                flex items-center justify-center gap-1.5
                 bg-gradient-to-r ${config.gradient}
-                text-white py-3 rounded-xl
-                text-sm font-semibold
-                shadow-lg ${config.glow}
-                hover:shadow-xl
+                text-white py-2.5 px-4 rounded-xl
+                text-xs font-bold uppercase tracking-wide
+                shadow-md ${config.glow}
+                hover:shadow-lg
                 transition-all duration-300
-                hover:scale-[1.02] active:scale-95
+                hover:scale-[1.03] active:scale-95
                 group/btn
               `}
             >
               {/* Shine Effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700" />
-              
-              <Download className="w-4 h-4" />
+
+              <Download className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Download PDF</span>
               <span className="sm:hidden">Download</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ExternalLink className="w-3 h-3" />
             </a>
           </div>
         </div>
