@@ -4,6 +4,9 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Terms & Conditions - Urdu Sharah Library",
   description: "Terms and Conditions for using Urdu Sharah Digital Library. Please read carefully before using our services.",
+  alternates: {
+    canonical: 'https://books-library-ashy.vercel.app/terms-and-conditions',
+  },
   robots: {
     index: true,
     follow: true,

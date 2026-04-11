@@ -5,6 +5,9 @@ import { Mail, Globe, Clock, BookOpen, Code, Heart, AlertCircle, Users, MessageC
 export const metadata: Metadata = {
   title: "Contact Us - Urdu Sharah Library",
   description: "Get in touch with Urdu Sharah Digital Library team. We're here to help with your questions and feedback.",
+  alternates: {
+    canonical: 'https://books-library-ashy.vercel.app/contact-us',
+  },
   robots: {
     index: true,
     follow: true,

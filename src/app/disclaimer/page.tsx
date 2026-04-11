@@ -4,6 +4,9 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Disclaimer - Urdu Sharah Library",
   description: "Disclaimer for Urdu Sharah Digital Library. Important information about the use of our content and services.",
+  alternates: {
+    canonical: 'https://books-library-ashy.vercel.app/disclaimer',
+  },
   robots: {
     index: true,
     follow: true,

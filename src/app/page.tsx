@@ -5,10 +5,18 @@ import PapersSection from '@/components/PapersSection';
 import AboutSection from '@/components/AboutSection';
 import Footer from '@/components/Footer';
 import AdBanner from '@/components/AdBanner';
+import { Metadata } from 'next';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Home - Urdu Sharah Digital Library | Dars-e-Nizami Books',
   description: 'Access complete Dars-e-Nizami curriculum. Browse 300+ Urdu Sharah books, sharahs, and past papers for all 8 years of Kanzul Madaris studies.',
+  alternates: {
+    canonical: 'https://books-library-ashy.vercel.app/',
+  },
+  openGraph: {
+    url: 'https://books-library-ashy.vercel.app/',
+    type: 'website',
+  },
 };
 
 export default function Home() {

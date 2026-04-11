@@ -73,6 +73,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://books-library-ashy.vercel.app",
+    languages: {
+      'ur': 'https://books-library-ashy.vercel.app',
+      'en': 'https://books-library-ashy.vercel.app',
+    },
   },
   category: "Education",
 };

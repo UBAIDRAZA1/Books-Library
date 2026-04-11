@@ -4,6 +4,9 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Privacy Policy - Urdu Sharah Library",
   description: "Privacy Policy for Urdu Sharah Digital Library. Learn how we collect, use, and protect your data.",
+  alternates: {
+    canonical: 'https://books-library-ashy.vercel.app/privacy-policy',
+  },
   robots: {
     index: true,
     follow: true,
