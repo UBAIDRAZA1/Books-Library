@@ -1,15 +1,7 @@
+'use client';
+
 import Link from 'next/link';
 import { BookOpen, Home, Search, ArrowLeft } from 'lucide-react';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Page Not Found - Urdu Sharah Library',
-  description: 'The page you are looking for could not be found. Return to Urdu Sharah Digital Library homepage.',
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
 
 export default function NotFound() {
   return (

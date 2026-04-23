@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://books-library-ashy.vercel.app'),
   title: {
     default: "Urdu Sharah - Kanzul Madaris Digital Library | Dars-e-Nizami Books Online",
     template: "%s | Urdu Sharah Library"

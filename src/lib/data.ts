@@ -438,7 +438,8 @@ export function getBooksByYear(year: number): YearData | undefined {
 }
 
 export function getAllBooks(): Book[] {
-  return allData.flatMap(data => [...data.books, ...data.sharahs]);
+  const booksAndSharahs = allData.flatMap(data => [...data.books, ...data.sharahs]);
+  return [...booksAndSharahs, ...paperAaliya01, ...paperAaliya02, ...paperAalmiya01, ...paperAalmiya02];
 }
 
 export function getPapersByYear(year: number): Book[] | undefined {
