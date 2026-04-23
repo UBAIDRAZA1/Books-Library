@@ -9,7 +9,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Urdu Sharah Digital Library | Dars-e-Nizami Books',
-  description: 'Access complete Dars-e-Nizami curriculum. Browse 300+ Urdu Sharah books, sharahs, and past papers for all 8 years of Kanzul Madaris studies.',
+  description: 'Access complete Dars-e-Nizami curriculum. Browse 300+ Urdu Sharah books, sharahs, and past papers for all 8 years of Kanzul Madaris studies. Created by Muhammad Ubaid Raza Agentic Ai Developer',
   alternates: {
     canonical: 'https://books-library-ashy.vercel.app/',
   },
