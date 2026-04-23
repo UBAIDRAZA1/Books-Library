@@ -178,7 +178,7 @@ export default function YearPage({ params }: YearPageProps) {
           <YearBookGrid 
             books={yearData.books}
             title="Textbooks"
-            icon={BookOpen}
+            iconName="book"
             iconBgColor="from-blue-500 to-cyan-500"
             lineColor="blue"
             buttonColor="blue"
@@ -190,7 +190,7 @@ export default function YearPage({ params }: YearPageProps) {
           <YearBookGrid 
             books={yearData.sharahs}
             title="Sharahs"
-            icon={FileText}
+            iconName="file"
             iconBgColor="from-emerald-500 to-green-500"
             lineColor="emerald"
             buttonColor="emerald"
@@ -202,7 +202,7 @@ export default function YearPage({ params }: YearPageProps) {
           <YearBookGrid 
             books={yearData.papers}
             title="Past Papers"
-            icon={GraduationCap}
+            iconName="grad"
             iconBgColor="from-purple-500 to-pink-500"
             lineColor="purple"
             buttonColor="purple"

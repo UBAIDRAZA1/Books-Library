@@ -3,25 +3,29 @@
 import { useState } from 'react';
 import { Book } from '@/lib/data';
 import BookCard from './BookCard';
-import { ChevronDown, BookOpen } from 'lucide-react';
+import { ChevronDown, BookOpen, FileText, GraduationCap } from 'lucide-react';
 
 interface YearBookGridProps {
   books: Book[];
   title: string;
-  icon: any;
+  iconName: 'book' | 'file' | 'grad';
   iconBgColor: string;
   lineColor: string;
   buttonColor: string;
 }
 
-export default function YearBookGrid({ books, title, icon: Icon, iconBgColor, lineColor, buttonColor }: YearBookGridProps) {
+const iconMap = {
+  book: BookOpen,
+  file: FileText,
+  grad: GraduationCap,
+};
+
+export default function YearBookGrid({ books, title, iconName, iconBgColor, lineColor, buttonColor }: YearBookGridProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const Icon = iconMap[iconName];
   const displayedBooks = isExpanded ? books : books.slice(0, 6);
   const hasMore = books.length > 6;
 
-  // Split buttonColor into components if needed, or just use full class names
-  // buttonColor format: "blue" -> we need "bg-blue-600", "text-blue-600", "border-blue-600", etc.
-  
   const getButtonStyles = (color: string) => {
     switch(color) {
       case 'blue':
