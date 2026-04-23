@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import BookCard from '@/components/BookCard';
+import YearBookGrid from '@/components/YearBookGrid';
 import { allData } from '@/lib/data';
 import { BookOpen, ArrowLeft, FileText, GraduationCap, Sparkles } from 'lucide-react';
 import Link from 'next/link';
@@ -175,89 +175,38 @@ export default function YearPage({ params }: YearPageProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 space-y-16">
         {/* Books Section */}
         {yearData.books.length > 0 && (
-          <section className="animate-fade-in-up">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="h-px w-8 md:w-16 bg-gradient-to-r from-transparent via-blue-500 to-blue-500" />
-              <div className="flex items-center gap-3">
-                <div className="bg-gradient-to-br from-blue-500 to-cyan-500 p-3 rounded-xl">
-                  <BookOpen className="w-6 h-6 text-white" />
-                </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-800" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  Textbooks
-                </h2>
-              </div>
-              <div className="h-px w-8 md:w-16 bg-gradient-to-l from-transparent via-blue-500 to-blue-500" />
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-5">
-              {yearData.books.map((book, index) => (
-                <div
-                  key={book.id}
-                  className="animate-reveal"
-                  style={{ animationDelay: `${Math.min(index * 80, 500)}ms`, animationFillMode: 'backwards' }}
-                >
-                  <BookCard book={book} />
-                </div>
-              ))}
-            </div>
-          </section>
+          <YearBookGrid 
+            books={yearData.books}
+            title="Textbooks"
+            icon={BookOpen}
+            iconBgColor="from-blue-500 to-cyan-500"
+            lineColor="blue"
+            buttonColor="blue"
+          />
         )}
 
         {/* Sharahs Section */}
         {yearData.sharahs.length > 0 && (
-          <section className="animate-fade-in-up delay-100">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="h-px w-8 md:w-16 bg-gradient-to-r from-transparent via-emerald-500 to-emerald-500" />
-              <div className="flex items-center gap-3">
-                <div className="bg-gradient-to-br from-emerald-500 to-green-500 p-3 rounded-xl">
-                  <FileText className="w-6 h-6 text-white" />
-                </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-800" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  Sharahs
-                </h2>
-              </div>
-              <div className="h-px w-8 md:w-16 bg-gradient-to-l from-transparent via-emerald-500 to-emerald-500" />
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-5">
-              {yearData.sharahs.map((sharah, index) => (
-                <div
-                  key={sharah.id}
-                  className="animate-reveal"
-                  style={{ animationDelay: `${Math.min(index * 80, 500)}ms`, animationFillMode: 'backwards' }}
-                >
-                  <BookCard book={sharah} />
-                </div>
-              ))}
-            </div>
-          </section>
+          <YearBookGrid 
+            books={yearData.sharahs}
+            title="Sharahs"
+            icon={FileText}
+            iconBgColor="from-emerald-500 to-green-500"
+            lineColor="emerald"
+            buttonColor="emerald"
+          />
         )}
 
         {/* Past Papers Section */}
         {yearData.papers && yearData.papers.length > 0 && (
-          <section className="animate-fade-in-up delay-200">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="h-px w-8 md:w-16 bg-gradient-to-r from-transparent via-purple-500 to-purple-500" />
-              <div className="flex items-center gap-3">
-                <div className="bg-gradient-to-br from-purple-500 to-pink-500 p-3 rounded-xl">
-                  <GraduationCap className="w-6 h-6 text-white" />
-                </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-800" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  Past Papers
-                </h2>
-              </div>
-              <div className="h-px w-8 md:w-16 bg-gradient-to-l from-transparent via-purple-500 to-purple-500" />
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-5">
-              {yearData.papers.map((paper, index) => (
-                <div
-                  key={paper.id}
-                  className="animate-reveal"
-                  style={{ animationDelay: `${Math.min(index * 80, 500)}ms`, animationFillMode: 'backwards' }}
-                >
-                  <BookCard book={paper} />
-                </div>
-              ))}
-            </div>
-          </section>
+          <YearBookGrid 
+            books={yearData.papers}
+            title="Past Papers"
+            icon={GraduationCap}
+            iconBgColor="from-purple-500 to-pink-500"
+            lineColor="purple"
+            buttonColor="purple"
+          />
         )}
       </div>
 

@@ -1,11 +1,20 @@
 'use client';
 
+import { useState } from 'react';
 import { allData } from '@/lib/data';
 import BookCard from './BookCard';
-import { BookOpen, Library, Sparkles, ArrowRight } from 'lucide-react';
+import { BookOpen, Library, Sparkles, ArrowRight, ChevronDown } from 'lucide-react';
 
 export default function BooksSection() {
   const totalBooks = allData.reduce((acc, year) => acc + year.books.length, 0);
+  const [expandedYears, setExpandedYears] = useState<Record<string | number, boolean>>({});
+
+  const toggleYear = (year: string | number) => {
+    setExpandedYears(prev => ({
+      ...prev,
+      [year]: !prev[year]
+    }));
+  };
 
   return (
     <section id="books" className="relative py-20 md:py-28 bg-gradient-to-b from-white via-slate-50 to-white overflow-hidden">
@@ -62,94 +71,119 @@ export default function BooksSection() {
 
         {/* Year-wise Books */}
         <div className="space-y-20">
-          {allData.map((yearData, yearIndex) => (
-            <div 
-              key={yearData.year} 
-              className="scroll-mt-20" 
-              id={`year-${yearData.year}`}
-            >
-              {/* Year Header Card */}
-              <div className="relative group scroll-mt-24" id={`year-${yearData.year}-header`}>
-                {/* Subtle Border Glow */}
-                <div className="absolute -inset-px bg-gradient-to-r from-blue-500/50 via-purple-500/50 to-cyan-500/50 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
+          {allData.map((yearData, yearIndex) => {
+            const isExpanded = expandedYears[yearData.year] || false;
+            const displayedBooks = isExpanded ? yearData.books : yearData.books.slice(0, 6);
+            const hasMore = yearData.books.length > 6;
 
-                <div className="relative bg-gradient-to-r from-slate-900 via-primary-900 to-slate-900 text-white rounded-2xl p-5 md:p-6 shadow-xl border border-white/5 overflow-hidden">
-                  {/* Background Pattern */}
-                  <div className="absolute inset-0 opacity-3">
-                    <div className="absolute inset-0 islamic-pattern" />
-                  </div>
+            return (
+              <div 
+                key={yearData.year} 
+                className="scroll-mt-20" 
+                id={`year-${yearData.year}`}
+              >
+                {/* Year Header Card */}
+                <div className="relative group scroll-mt-24" id={`year-${yearData.year}-header`}>
+                  {/* Subtle Border Glow */}
+                  <div className="absolute -inset-px bg-gradient-to-r from-blue-500/50 via-purple-500/50 to-cyan-500/50 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
 
-                  {/* Animated Orbs */}
-                  <div className="absolute top-0 right-0 w-48 h-48 bg-gold-500/10 rounded-full blur-3xl" />
-                  <div className="absolute bottom-0 left-0 w-36 h-36 bg-blue-500/10 rounded-full blur-3xl" />
+                  <div className="relative bg-gradient-to-r from-slate-900 via-primary-900 to-slate-900 text-white rounded-2xl p-5 md:p-6 shadow-xl border border-white/5 overflow-hidden">
+                    {/* Background Pattern */}
+                    <div className="absolute inset-0 opacity-3">
+                      <div className="absolute inset-0 islamic-pattern" />
+                    </div>
 
-                  <div className="flex items-center justify-between flex-wrap gap-4 relative z-10">
-                    <div className="flex items-center gap-3">
-                      {/* Year Number */}
-                      <div className="relative flex-shrink-0">
-                        <div className="absolute inset-0 bg-gradient-to-br from-gold-400 to-amber-500 rounded-xl blur opacity-40 animate-pulse-slow" />
-                        <div className="relative bg-gradient-to-br from-gold-400 to-amber-500 rounded-xl p-3 shadow-lg">
-                          <span className="text-2xl md:text-3xl font-bold text-white">{yearData.year}</span>
+                    {/* Animated Orbs */}
+                    <div className="absolute top-0 right-0 w-48 h-48 bg-gold-500/10 rounded-full blur-3xl" />
+                    <div className="absolute bottom-0 left-0 w-36 h-36 bg-blue-500/10 rounded-full blur-3xl" />
+
+                    <div className="flex items-center justify-between flex-wrap gap-4 relative z-10">
+                      <div className="flex items-center gap-3">
+                        {/* Year Number */}
+                        <div className="relative flex-shrink-0">
+                          <div className="absolute inset-0 bg-gradient-to-br from-gold-400 to-amber-500 rounded-xl blur opacity-40 animate-pulse-slow" />
+                          <div className="relative bg-gradient-to-br from-gold-400 to-amber-500 rounded-xl p-3 shadow-lg">
+                            <span className="text-2xl md:text-3xl font-bold text-white">{yearData.year}</span>
+                          </div>
+                        </div>
+
+                        {/* Year Names */}
+                        <div>
+                          <h3 className="text-lg md:text-xl font-bold text-white mb-0.5" style={{ fontFamily: 'Playfair Display, serif' }}>
+                            {yearData.name}
+                          </h3>
+                          <p className="text-sm md:text-base text-gold-300/90 urdu-font" style={{ fontFamily: 'Noto Nastaliq Urdu, serif', lineHeight: '2.2' }} dir="rtl">
+                            {yearData.urduName}
+                          </p>
                         </div>
                       </div>
 
-                      {/* Year Names */}
-                      <div>
-                        <h3 className="text-lg md:text-xl font-bold text-white mb-0.5" style={{ fontFamily: 'Playfair Display, serif' }}>
-                          {yearData.name}
-                        </h3>
-                        <p className="text-sm md:text-base text-gold-300/90 urdu-font" style={{ fontFamily: 'Noto Nastaliq Urdu, serif', lineHeight: '2.2' }} dir="rtl">
-                          {yearData.urduName}
-                        </p>
+                      <div className="flex items-center gap-3">
+                        {/* Book Count */}
+                        <div className="text-center bg-white/5 backdrop-blur-md rounded-xl px-4 py-2.5 border border-white/10 hover:border-gold-400/40 transition-all group-hover:scale-105">
+                          <p className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-gold-300 to-amber-300 bg-clip-text text-transparent">{yearData.books.length}</p>
+                          <p className="text-[10px] text-white/60 font-medium uppercase tracking-wider mt-0.5">Books</p>
+                        </div>
+
+                        {/* Quick Nav Arrow */}
+                        {yearIndex < allData.length - 1 && (
+                          <a
+                            href={`#year-${allData[yearIndex + 1].year}-header`}
+                            className="hidden md:flex items-center justify-center w-10 h-10 bg-white/5 hover:bg-gold-400/15 rounded-lg border border-white/10 hover:border-gold-400/40 transition-all group-hover:scale-105"
+                          >
+                            <ArrowRight className="w-4 h-4 text-white/50 group-hover:text-gold-400 transition-colors rotate-90" />
+                          </a>
+                        )}
                       </div>
                     </div>
+                  </div>
+                </div>
 
-                    <div className="flex items-center gap-3">
-                      {/* Book Count */}
-                      <div className="text-center bg-white/5 backdrop-blur-md rounded-xl px-4 py-2.5 border border-white/10 hover:border-gold-400/40 transition-all group-hover:scale-105">
-                        <p className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-gold-300 to-amber-300 bg-clip-text text-transparent">{yearData.books.length}</p>
-                        <p className="text-[10px] text-white/60 font-medium uppercase tracking-wider mt-0.5">Books</p>
-                      </div>
-
-                      {/* Quick Nav Arrow */}
-                      {yearIndex < allData.length - 1 && (
-                        <a
-                          href={`#year-${allData[yearIndex + 1].year}-header`}
-                          className="hidden md:flex items-center justify-center w-10 h-10 bg-white/5 hover:bg-gold-400/15 rounded-lg border border-white/10 hover:border-gold-400/40 transition-all group-hover:scale-105"
+                {/* Books Grid */}
+                {yearData.books.length > 0 ? (
+                  <>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-5 mt-8">
+                      {displayedBooks.map((book, index) => (
+                        <div
+                          key={book.id}
+                          className="animate-reveal"
+                          style={{ animationDelay: `${Math.min(index * 80, 800)}ms`, animationFillMode: 'backwards' }}
                         >
-                          <ArrowRight className="w-4 h-4 text-white/50 group-hover:text-gold-400 transition-colors rotate-90" />
-                        </a>
-                      )}
+                          <BookCard book={book} />
+                        </div>
+                      ))}
                     </div>
+                    
+                      <div className="flex justify-center mt-12">
+                        <button
+                          onClick={() => toggleYear(yearData.year)}
+                          className="group relative inline-flex items-center gap-3 bg-white hover:bg-blue-600 text-blue-600 hover:text-white px-10 py-4 rounded-2xl border-2 border-blue-600 font-bold transition-all duration-500 shadow-lg hover:shadow-blue-500/40 active:scale-95 overflow-hidden hover:scale-105 animate-pulse-glow"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          <span className="relative z-10 flex items-center gap-2">
+                            {isExpanded ? 'Show Less' : 'More Books'}
+                            {isExpanded ? (
+                              <ChevronDown className="w-5 h-5 transition-transform duration-500 rotate-180" />
+                            ) : (
+                              <ChevronDown className="w-5 h-5 transition-transform duration-500 group-hover:translate-y-1" />
+                            )}
+                          </span>
+                        </button>
+                      </div>
+                  </>
+                ) : (
+                  <div className="text-center py-16 bg-white rounded-3xl shadow-xl border border-gray-100">
+                    <div className="relative w-24 h-24 mx-auto mb-6">
+                      <div className="absolute inset-0 bg-gray-100 rounded-full animate-pulse" />
+                      <BookOpen className="relative w-12 h-12 mx-auto text-gray-300" />
+                    </div>
+                    <p className="text-xl font-semibold text-gray-700 mb-2">Coming Soon</p>
+                    <p className="text-gray-500">Books for this year will be added shortly</p>
                   </div>
-                </div>
+                )}
               </div>
-
-              {/* Books Grid */}
-              {yearData.books.length > 0 ? (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-5 mt-8">
-                  {yearData.books.map((book, index) => (
-                    <div
-                      key={book.id}
-                      className="animate-reveal"
-                      style={{ animationDelay: `${Math.min(index * 80, 800)}ms`, animationFillMode: 'backwards' }}
-                    >
-                      <BookCard book={book} />
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-16 bg-white rounded-3xl shadow-xl border border-gray-100">
-                  <div className="relative w-24 h-24 mx-auto mb-6">
-                    <div className="absolute inset-0 bg-gray-100 rounded-full animate-pulse" />
-                    <BookOpen className="relative w-12 h-12 mx-auto text-gray-300" />
-                  </div>
-                  <p className="text-xl font-semibold text-gray-700 mb-2">Coming Soon</p>
-                  <p className="text-gray-500">Books for this year will be added shortly</p>
-                </div>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Bottom CTA */}
