@@ -71,6 +71,38 @@ export default function BooksSection() {
 
         {/* Year-wise Books */}
         <div className="space-y-20">
+          {/* External Library Link Section */}
+          <div className="relative group animate-fade-in-up">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-gold-400 to-cyan-600 rounded-3xl opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-700" />
+            <div className="relative bg-white/80 backdrop-blur-xl border border-blue-100 rounded-3xl p-6 md:p-8 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden">
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-[0.03] islamic-pattern pointer-events-none" />
+              
+              <div className="flex items-center gap-5 relative z-10">
+                <div className="bg-gradient-to-br from-blue-600 to-cyan-500 p-4 rounded-2xl shadow-lg shadow-blue-500/30">
+                  <Library className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold text-slate-800 mb-1">More 1st Year to 4th Year Books</h3>
+                  <p className="text-slate-500">Access our extended digital library for early years</p>
+                </div>
+              </div>
+
+              <a 
+                href="https://urdusharah.netlify.app/book" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group/btn relative inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 active:scale-95 overflow-hidden whitespace-nowrap"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 transition-transform duration-500" />
+                <span className="relative z-10 flex items-center gap-2">
+                  Visit External Library
+                  <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+                </span>
+              </a>
+            </div>
+          </div>
+
           {allData.map((yearData, yearIndex) => {
             const isExpanded = expandedYears[yearData.year] || false;
             const displayedBooks = isExpanded ? yearData.books : yearData.books.slice(0, 6);
